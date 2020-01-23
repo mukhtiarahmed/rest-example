@@ -68,14 +68,15 @@
   ```
   
 8. Get All Active Colour  resource.
-    ```
+ ```
      curl -X GET http://localhost:8080/api/1.0/colour/  -H 'Authorization: Bearer <JWT TOkEN>' 
-     ```
+     
+ ```
 
 
    You will get following format Json response.
    
-   ```
+ ```
   {
       "status": "SUCCESS",
       "message": null,
