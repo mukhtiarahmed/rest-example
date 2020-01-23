@@ -66,6 +66,7 @@ public class AssignmentMapper {
         ColourDTO dto = new ColourDTO();
         dto.setId(colour.getId());
         dto.setName(colour.getName());
+        dto.setHex(colour.getHex());
         return dto;
     }
 

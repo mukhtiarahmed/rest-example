@@ -205,7 +205,7 @@ public class PersonController {
 
     private Person toPerson(PersonDTO dto) throws AssignmentException {
         Person entity = new Person();
-        entity.setFirstName(dto.getLastName());
+        entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         entity.setFavouriteColour(serviceLocator.getColourService().get(dto.getColourId()));
         List<Hobby> hobbies = new ArrayList<>(dto.getHobbies().size());
