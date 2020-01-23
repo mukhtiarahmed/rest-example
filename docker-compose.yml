@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+
+  assignment:
+    image: assignment_image:latest
+    container_name: assignment
+    environment:
+     DATABASE_URL: assignment_db       
+    ports:
+     - "8080:8080"         
+    depends_on:
+     - assignment_db 
+    networks:
+     assignment-network:
+       aliases:
+        - assignment
+
+  assignment_db:
+      image: postgres:9.6
+      restart: always
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=docker
+        - POSTGRES_DB=assignment_local
+      networks:
+       assignment-network:
+         aliases:
+          - assignment_db
+networks:
+    assignment-network:
+        driver: bridge     

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="20">
+    <Appenders>
+        <RollingRandomAccessFile name="RollingRandomAccessFile"
+                                 fileName="${env:LOG_PATH}/assignment.log"
+                                 filePattern="${env:LOG_PATH}/$${date:yyyy-MM}/assignment-%d{yyyy-MM-dd-HH}-%i.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{10} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.hackerrank.assignment" level="debug" additivity="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+        <Logger name="org.springframework.core" level="info"
+                additivity="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+        <Logger name="org.springframework.security" level="info"
+                additivity="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+        <Logger name="org.postgresql" level="error" additivity="false">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
