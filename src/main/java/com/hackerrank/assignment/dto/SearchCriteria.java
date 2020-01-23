@@ -26,7 +26,7 @@ public class SearchCriteria implements Serializable {
 
     private String sortColumn;
 
-    private String sortOrder;
+    private String sortOrder = ASC;
 
     private boolean activeOnly;
 

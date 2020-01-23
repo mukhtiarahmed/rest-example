@@ -64,12 +64,12 @@ public class PersonServiceImpl extends BaseListableService<Person, String> imple
 
         Pageable pageable;
         if (columnCompMaster.contains(searchCriteria.getSortColumn())) {
-            pageable = PageRequest.of(searchCriteria.getPage(), searchCriteria.getPageSize());
-        } else {
             Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(searchCriteria.getSortOrder()),
                     searchCriteria.getSortColumn()));
             pageable = PageRequest.of(searchCriteria.getPage(), searchCriteria.getPageSize() > 0 ?
                     searchCriteria.getPageSize() : pageSize, sort);
+        } else {
+            pageable = PageRequest.of(searchCriteria.getPage(), searchCriteria.getPageSize());
         }
 
         Page<Person> page;
