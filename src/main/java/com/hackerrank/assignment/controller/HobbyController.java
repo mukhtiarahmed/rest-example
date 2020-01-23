@@ -93,7 +93,7 @@ public class HobbyController {
     /**
      * Create the Hobby.
      *
-     * @param entity the Hobby entity.
+     * @param dto the Hobby dto.
      * @return the entity
      * @throws InvalidDataException if entity is null or not valid
      * @throws AssignmentException  if any other error occurred during operation
@@ -102,7 +102,9 @@ public class HobbyController {
     @ResponseStatus(CREATED)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseDTO<HobbyDTO> create(@RequestBody @Valid Hobby entity) throws AssignmentException {
+    public ResponseDTO<HobbyDTO> create(@RequestBody @Valid HobbyDTO dto) throws AssignmentException {
+        Hobby entity = new Hobby();
+        entity.setName(dto.getName());
         Hobby hobby = serviceLocator.getHobbyService().create(entity);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toHobbyDTO(hobby));
     }
@@ -112,7 +114,7 @@ public class HobbyController {
      * Update the Hobby.
      *
      * @param id     the Hobby ID
-     * @param entity the Hobby entity
+     * @param dto the Hobby entity
      * @return the updated entity
      * @throws InvalidDataException if entity is null or not valid, or id is not positive
      * @throws AssignmentException  if any other error occurred during operation
@@ -120,7 +122,9 @@ public class HobbyController {
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseDTO<HobbyDTO> update(@PathVariable String id, @RequestBody @Valid Hobby entity) throws AssignmentException {
+    public ResponseDTO<HobbyDTO> update(@PathVariable String id, @RequestBody @Valid HobbyDTO dto) throws AssignmentException {
+        Hobby entity = new Hobby();
+        entity.setName(dto.getName());
         Hobby hobby = serviceLocator.getHobbyService().update(id, entity);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toHobbyDTO(hobby));
     }

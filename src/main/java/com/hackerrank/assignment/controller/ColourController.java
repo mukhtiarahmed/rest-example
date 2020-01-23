@@ -92,7 +92,7 @@ public class ColourController {
     /**
      * Create the Colour.
      *
-     * @param entity the Colour entity.
+     * @param dto the ColourDTO dto.
      * @return the ResponseDTO
      * @throws InvalidDataException if entity is null or not valid
      * @throws AssignmentException  if any other error occurred during operation
@@ -100,7 +100,10 @@ public class ColourController {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
     @LogMethod
-    public ResponseDTO<ColourDTO> create(@RequestBody Colour entity) throws AssignmentException {
+    public ResponseDTO<ColourDTO> create(@RequestBody ColourDTO dto) throws AssignmentException {
+        Colour entity = new Colour();
+        entity.setName(dto.getName());
+        entity.setHex(dto.getHex());
         Colour colour = serviceLocator.getColourService().create(entity);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toColourDTO(colour));
     }
@@ -110,14 +113,17 @@ public class ColourController {
      * Update the Colour.
      *
      * @param id     the Colour ID
-     * @param entity the Colour entity
+     * @param dto the ColourDTO dto.
      * @return the ResponseDTO
      * @throws InvalidDataException if entity is null or not valid, or id is not positive
      * @throws AssignmentException  if any other error occurred during operation
      */
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @LogMethod
-    public ResponseDTO<ColourDTO> update(@PathVariable String id, @RequestBody Colour entity) throws AssignmentException {
+    public ResponseDTO<ColourDTO> update(@PathVariable String id, @RequestBody ColourDTO dto) throws AssignmentException {
+        Colour entity = new Colour();
+        entity.setName(dto.getName());
+        entity.setHex(dto.getHex());
         Colour colour = serviceLocator.getColourService().update(id, entity);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toColourDTO(colour));
     }
