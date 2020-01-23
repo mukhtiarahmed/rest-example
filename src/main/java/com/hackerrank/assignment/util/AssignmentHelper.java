@@ -89,6 +89,8 @@ public final class AssignmentHelper {
      */
     private static final String MESSAGE_ERROR = "Error in method %1$s. Details:";
 
+    private static final String MESSAGE_PROVIDED_ERROR = " %s is not provided";
+
     /**
      * It checks whether a given object is null.
      *
@@ -98,7 +100,7 @@ public final class AssignmentHelper {
      */
     public static void checkNull(Object object, String name) throws InvalidDataException {
         if (object == null) {
-            throw new InvalidDataException(name + " is not provided");
+            throw new InvalidDataException(String.format(MESSAGE_PROVIDED_ERROR, name));
         }
     }
 
@@ -111,7 +113,7 @@ public final class AssignmentHelper {
      */
     public static void checkNullOrEmpty(String str, String name) throws InvalidDataException {
         if (str == null || str.trim().isEmpty()) {
-            throw new InvalidDataException("" + name + " is not provided");
+            throw new InvalidDataException(String.format(MESSAGE_PROVIDED_ERROR, name));
         }
     }
 
@@ -124,7 +126,7 @@ public final class AssignmentHelper {
      */
     public static void checkNullOrEmpty(Collection<?> list, String name) throws InvalidDataException {
         if (list == null || list.isEmpty()) {
-            throw new InvalidDataException("" + name + " is not provided");
+            throw new InvalidDataException(String.format(MESSAGE_PROVIDED_ERROR, name));
         }
     }
 
@@ -164,19 +166,6 @@ public final class AssignmentHelper {
     public static void checkConfigNotNull(Object object, String name) {
         if (object == null) {
             throw new ConfigurationException(String.format("%s should be provided", name));
-        }
-    }
-
-    /**
-     * Check if an entity with a given key exists.
-     *
-     * @param id     the long
-     * @param entity the entity object
-     * @throws EntityNotFoundException if the entity can not be found in DB
-     */
-    public static void checkEntityExist(Object entity, Object id) throws EntityNotFoundException {
-        if (entity == null) {
-            throw new EntityNotFoundException("entity of ID=" + id + " can not be found.");
         }
     }
 
@@ -346,28 +335,6 @@ public final class AssignmentHelper {
             }
         }
         return true;
-    }
-
-
-    public static String copyFileToDir(MultipartFile multipart, String dirPath)
-            throws AssignmentException {
-        File dir = new File(dirPath);
-        if (!createDirectoryIfNotExist(dir)) {
-            throw new AssignmentException("Error during to create dir : " + dirPath);
-        }
-
-
-        File uploadFile = new File(dir, multipart.getOriginalFilename());
-        if (uploadFile.exists()) {
-            String randomFileName = addRandomStringInFileName(multipart.getOriginalFilename());
-            uploadFile = new File(randomFileName);
-        }
-        try {
-            multipart.transferTo(uploadFile);
-        } catch (IOException e) {
-            throw new AssignmentException("Error during copy upload file : ", e);
-        }
-        return uploadFile.getName();
     }
 
 

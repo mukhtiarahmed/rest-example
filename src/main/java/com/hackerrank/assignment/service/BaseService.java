@@ -59,9 +59,12 @@ public abstract class BaseService<T extends BaseEntity, ID> implements GenericSe
     public T get(ID id) {
         AssignmentHelper.checkNull(id, "id");
         Optional<T> optional = repository.findById(id);
-        T entity = optional.get();
-        AssignmentHelper.checkEntityExist(entity, id);
-        return entity;
+        if(optional.isPresent()) {
+            return  optional.get();
+        } else {
+            throw new EntityNotFoundException("entity of ID=" + id + " can not be found.");
+        }
+
     }
 
     /**

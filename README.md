@@ -36,7 +36,7 @@
 6. you can use following user account to login the application.
    * Username = ahmed, password = password, Role = Admin
    * Username = mukhtiar, password = password, Role = User
-   * Username = admin, password = password, Role = Admin
+   * Username = admin, password = admin, Role = Admin
 
 7. Get All Active Hobby  resource.
      ``` 

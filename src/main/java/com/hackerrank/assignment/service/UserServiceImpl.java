@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         userDTO = new UserDTO();
         userDTO.setRole("ROLE_ADMIN");
         userDTO.setUserName("admin");
-        userDTO.setPassword("password");
+        userDTO.setPassword("admin");
         userDTOMap.put(userDTO.getUserName(), userDTO);
 
     }
