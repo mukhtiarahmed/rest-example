@@ -23,14 +23,15 @@
    ```
     
    You will get following format Json response. data field has the JWT token. It requires for authorization to call rest api.
-    ``` 
+   
+    ```
     
        {
            "status": "SUCCESS",
            "message": "Authenticate successfully",
            "data": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhaG1lZCIsInJvbGUiOiJST0xFX0FETUlOIiwidXNlck5hbWUiOiJhaG1lZCIsImV4cCI6MTU3OTgzMTk1NywiaWF0IjoxNTc5NzQ1NTU3fQ.wFc6ORT_ttfJHZRqOySrFp3YqMHPPLUkNoM47NI9ru-uhURhkdDHyfwIaAoNgeSOZf0m_EojUx1UkqkP_r8R-g"
        }
-    ```
+     ```
 
 6. you can use following user account to login the application.
    * Username = ahmed, password = password, Role = Admin
