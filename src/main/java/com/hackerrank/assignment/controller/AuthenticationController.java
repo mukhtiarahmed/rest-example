@@ -4,6 +4,7 @@ package com.hackerrank.assignment.controller;
 import com.hackerrank.assignment.dto.ResponseDTO;
 import com.hackerrank.assignment.dto.UserDTO;
 import com.hackerrank.assignment.security.JwtTokenUtil;
+import com.hackerrank.assignment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,10 +28,13 @@ public class AuthenticationController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseDTO<String> authenticate(@RequestBody UserDTO user) {
-        UserDTO userDTO = jwtTokenUtil.getUserDTOByUserName(user.getUserName());
+        UserDTO userDTO = userService.getUserDTOByUserName(user.getUserName());
 
         if (userDTO != null && userDTO.getPassword().equals(user.getPassword())) {
 

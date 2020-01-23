@@ -1,9 +1,11 @@
 package com.hackerrank.assignment.security;
 
 import com.hackerrank.assignment.dto.UserDTO;
+import com.hackerrank.assignment.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,32 +26,8 @@ public class JwtTokenUtil implements Serializable {
     private static final long serialVersionUID = -32424243248L;
     public static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60;
 
-
-    private Map<String, UserDTO> userDTOMap = new HashMap<>();
-
     @Value("${jwt.secret}")
     private String secret;
-
-
-    @PostConstruct
-    public void init() {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setRole("ROLE_ADMIN");
-        userDTO.setUserName("ahmed");
-        userDTO.setPassword("password");
-        userDTOMap.put(userDTO.getUserName(), userDTO);
-        userDTO = new UserDTO();
-        userDTO.setRole("ROLE_USER");
-        userDTO.setUserName("mukhtiar");
-        userDTO.setPassword("password");
-        userDTOMap.put(userDTO.getUserName(), userDTO);
-        userDTO = new UserDTO();
-        userDTO.setRole("ROLE_ADMIN");
-        userDTO.setUserName("admin");
-        userDTO.setPassword("password");
-        userDTOMap.put(userDTO.getUserName(), userDTO);
-
-    }
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -94,9 +72,7 @@ public class JwtTokenUtil implements Serializable {
         return (username.equals(user.getUserName()) && !isTokenExpired(token));
     }
 
-    public UserDTO getUserDTOByUserName(String userName) {
-        return userDTOMap.get(userName);
-    }
+
 
 
 }

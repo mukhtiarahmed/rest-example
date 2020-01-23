@@ -2,6 +2,7 @@ package com.hackerrank.assignment.security;
 
 
 import com.hackerrank.assignment.dto.UserDTO;
+import com.hackerrank.assignment.service.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -34,6 +35,9 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private UserService userService;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -65,7 +69,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         // Once we get the token validate it.
         if (StringUtils.isNotEmpty(userName) && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDTO user = jwtTokenUtil.getUserDTOByUserName(userName);
+            UserDTO user = userService.getUserDTOByUserName(userName);
 
 
             // if token is valid configure Spring Security to manually set
