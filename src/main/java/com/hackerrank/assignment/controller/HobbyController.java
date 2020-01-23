@@ -69,8 +69,8 @@ public class HobbyController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseDTO<List> getAll() throws AssignmentException {
         List<Hobby> hobbyList = serviceLocator.getHobbyService().activeHobbyList();
-        List<HobbyDTO> hobbyDTOS = hobbyList.stream().map(h ->
-                AssignmentMapper.toHobbyDTO(h)).collect(Collectors.toList());
+        List<HobbyDTO> hobbyDTOS = hobbyList.stream().map(
+                AssignmentMapper::toHobbyDTO).collect(Collectors.toList());
         return new ResponseDTO<>(SUCCESS, null, hobbyDTOS);
     }
 

@@ -1,15 +1,10 @@
 package com.hackerrank.assignment.controller;
 
 
-import com.fasterxml.jackson.datatype.jsr310.deser.MonthDayDeserializer;
 import com.hackerrank.assignment.annotations.LogMethod;
 import com.hackerrank.assignment.domain.Hobby;
 import com.hackerrank.assignment.domain.Person;
-import com.hackerrank.assignment.dto.ListResponseDTO;
-import com.hackerrank.assignment.dto.PersonDTO;
-import com.hackerrank.assignment.dto.ResponseDTO;
-import com.hackerrank.assignment.dto.SearchCriteria;
-import com.hackerrank.assignment.dto.SimplePersonDTO;
+import com.hackerrank.assignment.dto.*;
 import com.hackerrank.assignment.exception.AssignmentException;
 import com.hackerrank.assignment.exception.ConfigurationException;
 import com.hackerrank.assignment.exception.EntityNotFoundException;
@@ -19,17 +14,10 @@ import com.hackerrank.assignment.service.ServiceLocator;
 import com.hackerrank.assignment.util.AssignmentHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -40,10 +28,7 @@ import static com.hackerrank.assignment.util.AssignmentHelper.API_VER;
 import static com.hackerrank.assignment.util.AssignmentHelper.SUCCESS;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 /**
@@ -120,8 +105,8 @@ public class PersonController {
                         withSortColumn(orderBy).
                         withSortOrder(direction).build();
         ListResponseDTO<Person> listResponseDTO = serviceLocator.getPersonService().list(searchCriteria);
-        List<PersonDTO> dtoList = listResponseDTO.getData().stream().map(p ->
-                AssignmentMapper.toPersonDTO(p)).collect(Collectors.toList());
+        List<PersonDTO> dtoList = listResponseDTO.getData().stream().map(
+                AssignmentMapper::toPersonDTO).collect(Collectors.toList());
 
         ListResponseDTO<PersonDTO> responseDTO = new ListResponseDTO<>();
         responseDTO.setData(dtoList);

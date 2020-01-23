@@ -68,8 +68,8 @@ public class ColourController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseDTO<List> getAll() throws AssignmentException {
         List<Colour> colours = serviceLocator.getColourService().activeColourList();
-        List<ColourDTO> colourDTOS = colours.stream().map(c ->
-                AssignmentMapper.toColourDTO(c)).collect(Collectors.toList());
+        List<ColourDTO> colourDTOS = colours.stream().map(
+                AssignmentMapper::toColourDTO).collect(Collectors.toList());
         return new ResponseDTO<>(SUCCESS, null, colourDTOS);
     }
 
