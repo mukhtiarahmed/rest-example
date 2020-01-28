@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.hackerrank.assignment.util.AssignmentHelper.SUCCESS;
@@ -33,6 +34,7 @@ public class AuthenticationController {
 
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
     public ResponseDTO<String> authenticate(@RequestBody UserDTO user) {
         UserDTO userDTO = userService.getUserDTOByUserName(user.getUserName());
 

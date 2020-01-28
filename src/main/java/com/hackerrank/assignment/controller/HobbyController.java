@@ -13,11 +13,7 @@ import com.hackerrank.assignment.service.ServiceLocator;
 import com.hackerrank.assignment.util.AssignmentHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -67,6 +63,7 @@ public class HobbyController {
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO<List> getAll() throws AssignmentException {
         List<Hobby> hobbyList = serviceLocator.getHobbyService().activeHobbyList();
         List<HobbyDTO> hobbyDTOS = hobbyList.stream().map(
@@ -85,6 +82,7 @@ public class HobbyController {
      */
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
+    @ResponseBody
     public ResponseDTO<HobbyDTO> get(@PathVariable String id) throws AssignmentException {
         Hobby hobby = serviceLocator.getHobbyService().get(id);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toHobbyDTO(hobby));
@@ -102,6 +100,7 @@ public class HobbyController {
     @ResponseStatus(CREATED)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO<HobbyDTO> create(@RequestBody @Valid HobbyDTO dto) throws AssignmentException {
         Hobby entity = new Hobby();
         entity.setName(dto.getName());
@@ -122,6 +121,7 @@ public class HobbyController {
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO<HobbyDTO> update(@PathVariable String id, @RequestBody @Valid HobbyDTO dto) throws AssignmentException {
         Hobby entity = new Hobby();
         entity.setName(dto.getName());
@@ -139,6 +139,7 @@ public class HobbyController {
     @RequestMapping(value = "/{id}", method = DELETE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getHobbyService().delete(id);
         return new ResponseDTO(SUCCESS, "Delete Hobby", null);

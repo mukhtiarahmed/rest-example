@@ -41,13 +41,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(API_VER + "/person")
 public class PersonController {
 
-    // https://github.com/daniel-cottone/Cerberus
-    // https://github.com/javalite/activeweb-rest
-    // https://hantsy.gitbook.io/build-a-restful-app-with-spring-mvc-and-angularjs/testing
-    // https://hantsy.gitbook.io/build-a-restful-app-with-spring-mvc-and-angularjs/swagger
-    //https://github.com/pavelfomin/spring-boot-rest-example
-    // https://github.com/rishal-hurbans/The-REST-Architectural-Style
-    // https://github.com/ryanmccormick/spring-boot-rest-best-practices
     @Autowired
     private ServiceLocator serviceLocator;
 
@@ -66,6 +59,7 @@ public class PersonController {
     @LogMethod
     @RequestMapping(value = "/pagination",
             method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
     public ListResponseDTO<SimplePersonDTO> pagination(@RequestParam(value = "orderBy", required = false) String orderBy,
                                                        @RequestParam(value = "direction", required = false) String direction,
                                                        @RequestParam("page") int page, @RequestParam("pageSize") int pageSize,
@@ -93,6 +87,7 @@ public class PersonController {
     @RequestMapping(value = "/admin/pagination",
             method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ListResponseDTO<PersonDTO> paginationForAdmin(@RequestParam(value = "orderBy", required = false) String orderBy,
                                                          @RequestParam(value = "direction", required = false) String direction,
                                                          @RequestParam("page") int page, @RequestParam("pageSize") int pageSize,
@@ -127,6 +122,7 @@ public class PersonController {
      */
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
+    @ResponseBody
     public ResponseDTO get(@PathVariable String id) throws AssignmentException {
         Person person = serviceLocator.getPersonService().get(id);
         return new ResponseDTO(SUCCESS, null, AssignmentMapper.toSimplePersonDTO(person));
@@ -144,6 +140,7 @@ public class PersonController {
     @RequestMapping(value = "/admin/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO getPersonDTO(@PathVariable String id) throws AssignmentException {
         Person person = serviceLocator.getPersonService().get(id);
         return new ResponseDTO(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
@@ -162,6 +159,7 @@ public class PersonController {
     @ResponseStatus(CREATED)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO create(@RequestBody @Valid PersonDTO personDTO) throws AssignmentException {
         Person entity = toPerson(personDTO);
         Person person = serviceLocator.getPersonService().create(entity);
@@ -181,6 +179,7 @@ public class PersonController {
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO update(@PathVariable String id, @Valid @RequestBody PersonDTO personDTO) throws AssignmentException {
         Person entity = toPerson(personDTO);
         Person person = serviceLocator.getPersonService().update(id, entity);
@@ -197,6 +196,7 @@ public class PersonController {
     @RequestMapping(value = "/{id}", method = DELETE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getPersonService().delete(id);
         return new ResponseDTO(SUCCESS, "Delete Person", null);

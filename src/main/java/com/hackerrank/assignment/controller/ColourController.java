@@ -14,11 +14,7 @@ import com.hackerrank.assignment.service.ServiceLocator;
 import com.hackerrank.assignment.util.AssignmentHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -66,6 +62,7 @@ public class ColourController {
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
     public ResponseDTO<List> getAll() throws AssignmentException {
         List<Colour> colours = serviceLocator.getColourService().activeColourList();
         List<ColourDTO> colourDTOS = colours.stream().map(
@@ -84,6 +81,7 @@ public class ColourController {
      */
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
+    @ResponseBody
     public ResponseDTO<ColourDTO> get(@PathVariable String id) throws AssignmentException {
         Colour colour = serviceLocator.getColourService().get(id);
         return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toColourDTO(colour));
@@ -100,6 +98,7 @@ public class ColourController {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
     @LogMethod
+    @ResponseBody
     public ResponseDTO<ColourDTO> create(@RequestBody ColourDTO dto) throws AssignmentException {
         Colour entity = new Colour();
         entity.setName(dto.getName());
@@ -120,6 +119,7 @@ public class ColourController {
      */
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @LogMethod
+    @ResponseBody
     public ResponseDTO<ColourDTO> update(@PathVariable String id, @RequestBody ColourDTO dto) throws AssignmentException {
         Colour entity = new Colour();
         entity.setName(dto.getName());
@@ -137,6 +137,7 @@ public class ColourController {
      */
     @RequestMapping(value = "/{id}", method = DELETE)
     @LogMethod
+    @ResponseBody
     public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getColourService().delete(id);
         return new ResponseDTO(SUCCESS, "Delete Colour", null);
