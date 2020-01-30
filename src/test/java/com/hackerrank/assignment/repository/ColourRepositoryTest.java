@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 public class ColourRepositoryTest {
 
     @Autowired
-    private HobbyRepository hobbyRepository;
+    private ColourRepository colourRepository;
 
     @Autowired
     private TestEntityManager entityManager;

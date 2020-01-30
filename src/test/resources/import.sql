@@ -1,3 +1,25 @@
+-- ----------------------------
+-- TRUNCATE Table PERSON_HOBBY
+-- ----------------------------
+
+TRUNCATE TABLE person_hobby;
+-- ----------------------------
+-- TRUNCATE Table PERSON
+-- ----------------------------
+
+TRUNCATE TABLE person;
+
+-- ----------------------------
+-- TRUNCATE Table colour
+-- ----------------------------
+
+TRUNCATE TABLE colour;
+
+-- ----------------------------
+-- TRUNCATE Tabl hobby
+-- ----------------------------
+
+TRUNCATE TABLE hobby;
 
 -- ----------------------------
 -- Records of colour

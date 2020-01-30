@@ -34,6 +34,7 @@ public final class TestUtils {
 
     public static Colour createColour(){
         final Colour colour = new Colour();
+
         colour.setHex("#00FF00");
         colour.setName("Test Colour");
         return colour;
@@ -50,9 +51,7 @@ public final class TestUtils {
         final Person person = new Person();
         person.setFirstName(firstName);
         person.setLastName(lastName);
-        person.setFavouriteColour(createColour());
         person.setDateOfBirth( LocalDate.of(2000, Month.JANUARY, 1));
-        person.setHobbies(Arrays.asList(createHobby()));
         return person;
     }
 
