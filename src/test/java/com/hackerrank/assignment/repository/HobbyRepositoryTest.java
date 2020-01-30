@@ -103,6 +103,26 @@ public class HobbyRepositoryTest {
         assertThat(updated.getLastModifiedOn(), is(old.getLastModifiedOn()));
 
     }
+    @Test
+    public void testFindByIdHobby() throws Exception {
+        String hobbyName = "Test Hobby";
+        Hobby hobby = new Hobby();
+        hobby.setName(hobbyName);
+        Hobby persist  = entityManager.persist(hobby);
+
+        Optional<Hobby> optional = hobbyRepository.findById(persist.getId());
+        assertThat(optional.isPresent(), is(Boolean.TRUE));
+        assertThat(optional, is(Optional.of(persist)));
+        final Hobby found = optional.get();
+        assertThat(found, is(notNullValue()));
+        assertThat(found.getName(), is(hobbyName));
+        assertThat(found.getId(), is(persist.getId()));
+        assertThat(found.getCreatedOn(), is(persist.getCreatedOn()));
+        assertThat(found.getLastModifiedBy(), is(persist.getLastModifiedBy()));
+        assertThat(found.getCreatedBy(), is(persist.getCreatedBy()));
+        assertThat(found.getLastModifiedOn(), is(persist.getLastModifiedOn()));
+
+    }
 
     @Test
     public void testFindAllHobby() throws Exception {
