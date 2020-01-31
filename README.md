@@ -140,25 +140,6 @@
     curl -X GET   'http://localhost:8080/api/1.0/person/pagination?page=0&pageSize=20' -H 'Authorization: Bearer  <JWT TOKEN>'
      ``` 
 
-  ```
-    {
-      "status": "SUCCESS",
-      "message": null,
-      "data": {
-          "id": "12aee7e6-b32a-45c1-aefc-cc910b4e81dd",
-          "firstName": "Robinson",
-          "lastName": "Robinson",
-          "colourId": "0b3db7e0-9c4c-4936-98e0-24ef27fd5824",
-          "age": 29,
-          "dateOfBirth": "1991-01-01",
-          "hobbies": [
-              "010d961a-d6fc-40d2-8cfd-350b6ff1e34f",
-              "0215299c-b300-4bf1-a60c-f108d531b1db",
-              "05645502-4a47-4d18-9dc9-c058d6712061"
-          ]
-      }
-    }
-  ```
    You will get following format Json response.
    
   ```
