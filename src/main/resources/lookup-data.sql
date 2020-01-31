@@ -876,3 +876,13 @@ INSERT INTO "hobby" VALUES ('fe94229b-b5ce-4481-8b82-4782d73e5ce8', 'System User
 INSERT INTO "hobby" VALUES ('ff0ab6bf-23d1-4351-bb99-d76f3749402e', 'System User', '2020-01-21 15:40:30.008', 't', 'System User', '2020-01-21 15:40:30.008', 'real time games');
 INSERT INTO "hobby" VALUES ('ff1d3aa4-0f34-4a44-829f-a0829edac2e2', 'System User', '2020-01-21 15:40:33.765', 't', 'System User', '2020-01-21 15:40:33.765', 'Metal detecting');
 INSERT INTO "hobby" VALUES ('ff8bfd25-6a2b-4629-8a80-83de59ea554c', 'System User', '2020-01-21 15:40:35.146', 't', 'System User', '2020-01-21 15:40:35.146', 'Singing In Choir');
+
+
+-- ----------------------------
+-- Records of person
+-- ----------------------------
+INSERT INTO "person" VALUES ('276afcb3-1cd6-464b-93d8-660ec8726da6', 'ahmed', '2020-01-31 10:53:07.505', 't', 'ahmed', '2020-01-31 10:53:07.505', '1975-01-31', 'Saleem', 'Ahmed', '00298aa3-17ff-4f4a-a647-1fd06e4caab7');
+INSERT INTO "person" VALUES ('5dcd58ac-6da9-4a37-af23-e6acd2c9cc55', 'ahmed', '2020-01-31 10:59:38.937', 't', 'ahmed', '2020-01-31 16:05:27.681', '1980-01-01', 'Ifftikhar', 'Ahmed', '00298aa3-17ff-4f4a-a647-1fd06e4caab7');
+INSERT INTO "person" VALUES ('7f154fa8-a5b5-445b-b6a7-4b07aa8a79ab', 'ahmed', '2020-01-31 10:58:51.551', 't', 'ahmed', '2020-01-31 10:58:51.551', '1975-01-31', 'Hamza', 'Ahmed', '00298aa3-17ff-4f4a-a647-1fd06e4caab7');
+INSERT INTO "person" VALUES ('977249c3-6789-441d-a9fd-27f6c274631c', 'ahmed', '2020-01-31 10:59:04.669', 't', 'ahmed', '2020-01-31 10:59:04.669', '2002-01-31', 'Mukhtiar', 'Muhammd', '00298aa3-17ff-4f4a-a647-1fd06e4caab7');
+INSERT INTO "person" VALUES ('abcd5b41-961a-4a70-9f2f-282754aadbc7', 'ahmed', '2020-01-31 10:59:19.879', 't', 'ahmed', '2020-01-31 10:59:19.879', '2004-01-31', 'Ali', 'Muhammd', '00298aa3-17ff-4f4a-a647-1fd06e4caab7');

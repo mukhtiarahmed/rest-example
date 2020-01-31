@@ -26,7 +26,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 
 /**
- * The Helper class.
+ * The Colour Repository Test class.
  *
  * @author mukhtiar.ahmed
  */

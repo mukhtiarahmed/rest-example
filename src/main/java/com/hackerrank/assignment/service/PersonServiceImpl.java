@@ -6,6 +6,7 @@ import com.hackerrank.assignment.domain.Person;
 import com.hackerrank.assignment.dto.ListResponseDTO;
 import com.hackerrank.assignment.dto.SearchCriteria;
 import com.hackerrank.assignment.exception.AssignmentException;
+import com.hackerrank.assignment.repository.PersonRepository;
 import com.hackerrank.assignment.util.AssignmentHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -73,29 +74,18 @@ public class PersonServiceImpl extends BaseListableService<Person, String> imple
         }
 
         Page<Person> page;
-        if (StringUtils.isEmpty(searchCriteria.getSearchString()) || searchCriteria.isActiveOnly())  {
-            Person person = new Person();
-            ExampleMatcher matcher = ExampleMatcher.matching();
-            if (StringUtils.isEmpty(searchCriteria.getSearchString())) {
-                person.setFirstName(searchCriteria.getSearchString());
-                person.setLastName(searchCriteria.getSearchString());
-                matcher.withIgnoreCase("firstName", "lastName")
-                        .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        if (!StringUtils.isEmpty(searchCriteria.getSearchString())) {
+            String searchString = searchCriteria.getSearchString().toLowerCase();
+            if (searchCriteria.isActiveOnly()) {
+                page = ((PersonRepository) repository).searchActivePersons(searchString, pageable);
+            } else {
+                page = ((PersonRepository) repository).searchPersons(searchString, pageable);
             }
-
-            if(searchCriteria.isActiveOnly()) {
-                person.setIsActive(Boolean.TRUE);
-                matcher.withMatcher("isActive", exact());
-            }
-
-            Example<Person> example = Example.of(person, matcher);
-            page = repository.findAll(example, pageable);
-
+        } else  if (searchCriteria.isActiveOnly())  {
+            page = ((PersonRepository) repository).findByIsActiveTrue(pageable);
         } else {
             page = repository.findAll(pageable);
         }
-
-
 
         ListResponseDTO responseDTO = new ListResponseDTO();
 

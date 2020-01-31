@@ -26,9 +26,8 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.assertEquals;
-
 /**
- * The Helper class.
+ * The Hobby Repository Test class.
  *
  * @author mukhtiar.ahmed
  */
@@ -37,7 +36,6 @@ import static org.junit.Assert.assertEquals;
 @DataJpaTest
 @Import(TestAuditingConfiguration.class)
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
-@Sql({"classpath:import.sql"})
 public class HobbyRepositoryTest {
 
     @Autowired

@@ -77,7 +77,7 @@ public class PersonController {
 
         ListResponseDTO<SimplePersonDTO> responseDTO = new ListResponseDTO<>();
         responseDTO.setData(dtoList);
-        responseDTO.setTotalElement(responseDTO.getTotalElement());
+        responseDTO.setTotalElement(listResponseDTO.getTotalElement());
         responseDTO.setStatus(SUCCESS);
         return responseDTO;
 
@@ -105,7 +105,7 @@ public class PersonController {
 
         ListResponseDTO<PersonDTO> responseDTO = new ListResponseDTO<>();
         responseDTO.setData(dtoList);
-        responseDTO.setTotalElement(responseDTO.getTotalElement());
+        responseDTO.setTotalElement(listResponseDTO.getTotalElement());
         responseDTO.setStatus(SUCCESS);
         return responseDTO;
     }
