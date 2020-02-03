@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -34,7 +35,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseDTO handleEntityNotFound(HttpServletRequest request, EntityNotFoundException exception) {
-        log.info("EntityNotFoundException Occured:: URL {} ", request.getRequestURL());
+        log.info("EntityNotFoundException Occurred:: URL {} ", request.getRequestURL());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
 
     }
@@ -48,7 +49,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({InvalidDataException.class})
     public ResponseDTO handleBadRequest(HttpServletRequest request, InvalidDataException exception) {
-        log.info("InvalidDataException Occured:: URL {} ", request.getRequestURL());
+        log.info("InvalidDataException Occurred:: URL {} ", request.getRequestURL());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
 
@@ -62,7 +63,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
     public ResponseDTO handleBadRequest(HttpServletRequest request,
                                         MethodArgumentTypeMismatchException exception) {
-        log.info("MethodArgumentTypeMismatchException Occured:: URL {} , method {} ",
+        log.info("MethodArgumentTypeMismatchException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -77,7 +78,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
     public ResponseDTO handleBadRequest(HttpServletRequest request,
                                         HttpRequestMethodNotSupportedException exception) {
-        log.info("HttpRequestMethodNotSupportedException Occured:: URL {} , method {} ",
+        log.info("HttpRequestMethodNotSupportedException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -91,7 +92,21 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({HttpMessageNotReadableException.class})
     public ResponseDTO handleBadRequest(HttpServletRequest request, HttpMessageNotReadableException exception) {
-        log.info("HttpMessageNotReadableException Occured:: URL {} , method {} ",
+        log.info("HttpMessageNotReadableException Occurred:: URL {} , method {} ",
+                request.getRequestURL(), request.getMethod());
+        return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
+    }
+
+    /**
+     * MethodArgumentNotValidException
+     *
+     * @param exception the exception
+     * @return the error response
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({MethodArgumentNotValidException .class})
+    public ResponseDTO handleBadRequest(HttpServletRequest request, MethodArgumentNotValidException exception) {
+        log.info("MethodArgumentNotValidException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -105,7 +120,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(AssignmentException.class)
     public ResponseDTO handleBadRequest(HttpServletRequest request, AssignmentException exception) {
-        log.error("AssignmentException Occured:: URL {} , method {} ",
+        log.error("AssignmentException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -119,7 +134,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
     public ResponseDTO handleBadRequest(HttpServletRequest request, RuntimeException exception) {
-        log.error("RuntimeException Occured:: URL {} , method {} ",
+        log.error("RuntimeException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -133,7 +148,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SQLException.class)
     public ResponseDTO handleBadRequest(HttpServletRequest request, SQLException exception) {
-        log.error("SQLException Occured:: URL {} , method {} ",
+        log.error("SQLException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -147,7 +162,7 @@ public class ExceptionHandlerController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ResponseDTO handleBadRequest(HttpServletRequest request, Exception exception) {
-        log.error("Exception Occured:: URL {} , method {} ",
+        log.error("Exception Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
