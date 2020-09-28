@@ -43,7 +43,7 @@ public abstract class BaseListableService<T extends BaseEntity, ID> extends Base
     @Override
     @LogMethod
     public ListResponseDTO<T> list(SearchCriteria searchCriteria) {
-        ListResponseDTO responseDTO = new ListResponseDTO();
+        ListResponseDTO<T> responseDTO = new ListResponseDTO<>();
 
         Pageable pageable;
         if (StringUtils.isEmpty(searchCriteria.getSortColumn())) {

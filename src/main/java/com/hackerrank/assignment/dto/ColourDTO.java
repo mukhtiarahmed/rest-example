@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class ColourDTO implements Serializable {
+	
+	private static final long serialVersionUID = 9052908123617887381L;
 
     private String id;
 

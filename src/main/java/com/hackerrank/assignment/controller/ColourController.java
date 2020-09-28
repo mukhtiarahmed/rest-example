@@ -63,7 +63,7 @@ public class ColourController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO<List> getAll() throws AssignmentException {
+    public ResponseDTO<List<ColourDTO>> getAll() throws AssignmentException {
         List<Colour> colours = serviceLocator.getColourService().activeColourList();
         List<ColourDTO> colourDTOS = colours.stream().map(
                 AssignmentMapper::toColourDTO).collect(Collectors.toList());
@@ -138,8 +138,8 @@ public class ColourController {
     @RequestMapping(value = "/{id}", method = DELETE)
     @LogMethod
     @ResponseBody
-    public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
+    public ResponseDTO<String> delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getColourService().delete(id);
-        return new ResponseDTO(SUCCESS, "Delete Colour", null);
+        return new ResponseDTO<>(SUCCESS, "Delete Colour", null);
     }
 }

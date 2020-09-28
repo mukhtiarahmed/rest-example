@@ -1,20 +1,6 @@
 package com.hackerrank.assignment.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hackerrank.assignment.exception.AssignmentException;
-import com.hackerrank.assignment.exception.ConfigurationException;
-import com.hackerrank.assignment.exception.EntityNotFoundException;
-import com.hackerrank.assignment.exception.InitializationNotAllowedException;
-import com.hackerrank.assignment.exception.InvalidDataException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +8,20 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hackerrank.assignment.exception.AssignmentException;
+import com.hackerrank.assignment.exception.ConfigurationException;
+import com.hackerrank.assignment.exception.InitializationNotAllowedException;
+import com.hackerrank.assignment.exception.InvalidDataException;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Helper class.

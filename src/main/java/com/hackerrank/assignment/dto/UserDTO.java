@@ -15,6 +15,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO implements Serializable {
+	
+	private static final long serialVersionUID = 908123617887381L;
 
     private String userName;
 

@@ -64,7 +64,7 @@ public class HobbyController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO<List> getAll() throws AssignmentException {
+    public ResponseDTO<List<HobbyDTO>> getAll() throws AssignmentException {
         List<Hobby> hobbyList = serviceLocator.getHobbyService().activeHobbyList();
         List<HobbyDTO> hobbyDTOS = hobbyList.stream().map(
                 AssignmentMapper::toHobbyDTO).collect(Collectors.toList());
@@ -140,8 +140,8 @@ public class HobbyController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
+    public ResponseDTO<String> delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getHobbyService().delete(id);
-        return new ResponseDTO(SUCCESS, "Delete Hobby", null);
+        return new ResponseDTO<>(SUCCESS, "Delete Hobby", null);
     }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 public class SimplePersonDTO implements Serializable {
 
 
+	private static final long serialVersionUID = 2908123617887381L;
+	
     private String firstName;
 
     private String lastName;

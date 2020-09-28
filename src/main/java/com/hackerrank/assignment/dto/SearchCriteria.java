@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 public class SearchCriteria implements Serializable {
+	
+	private static final long serialVersionUID = 9052903617887381L;
 
     public static final String ASC = "ASC";
 

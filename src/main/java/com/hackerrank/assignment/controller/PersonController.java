@@ -123,9 +123,9 @@ public class PersonController {
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     @LogMethod
     @ResponseBody
-    public ResponseDTO get(@PathVariable String id) throws AssignmentException {
+    public ResponseDTO<SimplePersonDTO> get(@PathVariable String id) throws AssignmentException {
         Person person = serviceLocator.getPersonService().get(id);
-        return new ResponseDTO(SUCCESS, null, AssignmentMapper.toSimplePersonDTO(person));
+        return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toSimplePersonDTO(person));
     }
 
     /**
@@ -141,9 +141,9 @@ public class PersonController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO getPersonDTO(@PathVariable String id) throws AssignmentException {
+    public ResponseDTO<PersonDTO> getPersonDTO(@PathVariable String id) throws AssignmentException {
         Person person = serviceLocator.getPersonService().get(id);
-        return new ResponseDTO(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
+        return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
     }
 
 
@@ -160,10 +160,10 @@ public class PersonController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO create(@RequestBody @Valid PersonDTO personDTO) throws AssignmentException {
+    public ResponseDTO<PersonDTO> create(@RequestBody @Valid PersonDTO personDTO) throws AssignmentException {
         Person entity = toPerson(personDTO);
         Person person = serviceLocator.getPersonService().create(entity);
-        return new ResponseDTO(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
+        return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
     }
 
 
@@ -180,10 +180,10 @@ public class PersonController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO update(@PathVariable String id, @Valid @RequestBody PersonDTO personDTO) throws AssignmentException {
+    public ResponseDTO<PersonDTO> update(@PathVariable String id, @Valid @RequestBody PersonDTO personDTO) throws AssignmentException {
         Person entity = toPerson(personDTO);
         Person person = serviceLocator.getPersonService().update(id, entity);
-        return new ResponseDTO(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
+        return new ResponseDTO<>(SUCCESS, null, AssignmentMapper.toPersonDTO(person));
     }
 
     /**
@@ -197,9 +197,9 @@ public class PersonController {
     @LogMethod
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
-    public ResponseDTO delete(@PathVariable String id) throws AssignmentException {
+    public ResponseDTO<String> delete(@PathVariable String id) throws AssignmentException {
         serviceLocator.getPersonService().delete(id);
-        return new ResponseDTO(SUCCESS, "Delete Person", null);
+        return new ResponseDTO<>(SUCCESS, "Delete Person", null);
     }
 
 

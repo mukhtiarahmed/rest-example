@@ -1,8 +1,11 @@
 package com.hackerrank.assignment.exception;
 
+import lombok.Getter;
+
 /**
  * @author Mukhtiar Ahmed
  */
+@Getter
 public class InitializationNotAllowedException extends Exception {
 
     private static final long serialVersionUID = 3699257678803467858L;

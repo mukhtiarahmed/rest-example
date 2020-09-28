@@ -31,7 +31,13 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity implements Serializable {
 
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", unique = true, length = 36)

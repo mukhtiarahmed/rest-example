@@ -1,7 +1,6 @@
 package com.hackerrank.assignment.util;
 
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
  * @author mukhtiar.ahmed
  * @version 1.0
  */
-@Slf4j
 @Component
 @Aspect
 public class AspectLogger {

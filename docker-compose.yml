@@ -16,7 +16,7 @@ services:
         - assignment
 
   assignment_db:
-      image: postgres:9.6
+      image: postgres:11.8
       restart: always
       ports:
         - "5432:5432"

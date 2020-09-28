@@ -1,7 +1,7 @@
 package com.hackerrank.assignment;
 
-import com.hackerrank.assignment.repository.ColourRepository;
-import lombok.extern.slf4j.Slf4j;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,9 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-import javax.sql.DataSource;
+import com.hackerrank.assignment.repository.ColourRepository;
 
 
 /**
@@ -22,7 +21,6 @@ import javax.sql.DataSource;
  * @author mukhtiar.ahmed
  * @version 1.0
  */
-@Slf4j
 @SpringBootApplication
 public class AssignmentApplication {
 

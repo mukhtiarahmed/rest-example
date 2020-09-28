@@ -41,7 +41,7 @@ public class AuthenticationController {
         if (userDTO != null && userDTO.getPassword().equals(user.getPassword())) {
 
             String token = jwtTokenUtil.generateToken(userDTO);
-            ResponseDTO responseDTO = new ResponseDTO();
+            ResponseDTO<String> responseDTO = new ResponseDTO<String>();
             responseDTO.setMessage("Authenticate successfully");
             responseDTO.setData(token);
             responseDTO.setStatus(SUCCESS);

@@ -5,7 +5,6 @@ import com.hackerrank.assignment.domain.Hobby;
 import com.hackerrank.assignment.exception.AssignmentException;
 import com.hackerrank.assignment.repository.HobbyRepository;
 import com.hackerrank.assignment.util.AssignmentHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,6 @@ import java.util.List;
  * @author mukhtiar.ahmed
  * @version 1.0
  */
-@Slf4j
 @Service
 @Transactional
 public class HobbyServiceImpl extends BaseListableService<Hobby, String> implements HobbyService {

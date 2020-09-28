@@ -1,6 +1,7 @@
 package com.hackerrank.assignment.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +14,15 @@ import javax.persistence.Entity;
  * @version 1.0
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 @Entity(name = "colour")
 public class Colour extends BaseEntity {
 
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
     @Column(name = "name", length = 100, nullable = false, unique = true)
     private String name;
 

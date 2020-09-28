@@ -34,7 +34,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseDTO handleEntityNotFound(HttpServletRequest request, EntityNotFoundException exception) {
+    public ResponseDTO<String> handleEntityNotFound(HttpServletRequest request, EntityNotFoundException exception) {
         log.info("EntityNotFoundException Occurred:: URL {} ", request.getRequestURL());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
 
@@ -48,7 +48,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({InvalidDataException.class})
-    public ResponseDTO handleBadRequest(HttpServletRequest request, InvalidDataException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, InvalidDataException exception) {
         log.info("InvalidDataException Occurred:: URL {} ", request.getRequestURL());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
     }
@@ -61,7 +61,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
-    public ResponseDTO handleBadRequest(HttpServletRequest request,
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request,
                                         MethodArgumentTypeMismatchException exception) {
         log.info("MethodArgumentTypeMismatchException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
@@ -76,7 +76,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ResponseDTO handleBadRequest(HttpServletRequest request,
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request,
                                         HttpRequestMethodNotSupportedException exception) {
         log.info("HttpRequestMethodNotSupportedException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
@@ -91,7 +91,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({HttpMessageNotReadableException.class})
-    public ResponseDTO handleBadRequest(HttpServletRequest request, HttpMessageNotReadableException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, HttpMessageNotReadableException exception) {
         log.info("HttpMessageNotReadableException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
@@ -105,7 +105,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({MethodArgumentNotValidException .class})
-    public ResponseDTO handleBadRequest(HttpServletRequest request, MethodArgumentNotValidException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, MethodArgumentNotValidException exception) {
         log.info("MethodArgumentNotValidException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod());
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
@@ -119,7 +119,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(AssignmentException.class)
-    public ResponseDTO handleBadRequest(HttpServletRequest request, AssignmentException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, AssignmentException exception) {
         log.error("AssignmentException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
@@ -133,7 +133,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
-    public ResponseDTO handleBadRequest(HttpServletRequest request, RuntimeException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, RuntimeException exception) {
         log.error("RuntimeException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
@@ -147,7 +147,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SQLException.class)
-    public ResponseDTO handleBadRequest(HttpServletRequest request, SQLException exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, SQLException exception) {
         log.error("SQLException Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);
@@ -161,7 +161,7 @@ public class ExceptionHandlerController {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ResponseDTO handleBadRequest(HttpServletRequest request, Exception exception) {
+    public ResponseDTO<String> handleBadRequest(HttpServletRequest request, Exception exception) {
         log.error("Exception Occurred:: URL {} , method {} ",
                 request.getRequestURL(), request.getMethod(), exception);
         return new ResponseDTO<String>(FAILURE, exception.getMessage(), null);

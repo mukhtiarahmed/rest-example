@@ -1,6 +1,7 @@
 package com.hackerrank.assignment.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,6 +23,7 @@ import java.util.List;
  * @version 1.0
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 @Entity(name = "person")
 public class Person extends BaseEntity {
 

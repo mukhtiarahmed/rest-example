@@ -5,7 +5,6 @@ import com.hackerrank.assignment.domain.Colour;
 import com.hackerrank.assignment.exception.AssignmentException;
 import com.hackerrank.assignment.repository.ColourRepository;
 import com.hackerrank.assignment.util.AssignmentHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +17,6 @@ import java.util.List;
  * @version 1.0
  */
 
-@Slf4j
 @Service
 @Transactional
 public class ColourServiceImpl extends BaseListableService<Colour, String> implements ColourService {

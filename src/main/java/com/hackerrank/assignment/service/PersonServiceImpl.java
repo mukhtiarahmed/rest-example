@@ -1,18 +1,11 @@
 package com.hackerrank.assignment.service;
 
 
-import com.hackerrank.assignment.annotations.LogMethod;
-import com.hackerrank.assignment.domain.Person;
-import com.hackerrank.assignment.dto.ListResponseDTO;
-import com.hackerrank.assignment.dto.SearchCriteria;
-import com.hackerrank.assignment.exception.AssignmentException;
-import com.hackerrank.assignment.repository.PersonRepository;
-import com.hackerrank.assignment.util.AssignmentHelper;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +13,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
+import com.hackerrank.assignment.annotations.LogMethod;
+import com.hackerrank.assignment.domain.Person;
+import com.hackerrank.assignment.dto.ListResponseDTO;
+import com.hackerrank.assignment.dto.SearchCriteria;
+import com.hackerrank.assignment.exception.AssignmentException;
+import com.hackerrank.assignment.repository.PersonRepository;
+import com.hackerrank.assignment.util.AssignmentHelper;
 
 /**
  * The Person service
@@ -32,7 +28,6 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
  * @version 1.0
  */
 
-@Slf4j
 @Service
 @Transactional
 public class PersonServiceImpl extends BaseListableService<Person, String> implements PersonService {
@@ -87,7 +82,7 @@ public class PersonServiceImpl extends BaseListableService<Person, String> imple
             page = repository.findAll(pageable);
         }
 
-        ListResponseDTO responseDTO = new ListResponseDTO();
+        ListResponseDTO<Person> responseDTO = new ListResponseDTO<>();
 
         responseDTO.setData(page.getContent());
         responseDTO.setTotalElement(page.getTotalElements());
