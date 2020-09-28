@@ -21,7 +21,7 @@ public class Colour extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 132432234987L;
 	
     @Column(name = "name", length = 100, nullable = false, unique = true)
     private String name;

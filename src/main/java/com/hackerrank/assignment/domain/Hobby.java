@@ -21,7 +21,7 @@ public class Hobby extends BaseEntity {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3432431L;
 	@Column(name = "name", length = 100, nullable = false, unique = true)
     private String name;
 
